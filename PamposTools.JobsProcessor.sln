@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PamposTools.JobsProcessor", "PamposTools.JobsProcessor\PamposTools.JobsProcessor.csproj", "{24EAA7DC-8A43-40E4-9570-70FEBAA16A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PamposTools.JobsProcessor", "PamposTools.JobsProcessor\PamposTools.JobsProcessor.csproj", "{24EAA7DC-8A43-40E4-9570-70FEBAA16A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PamposTools.JobsProcessor.Tests", "PamposTools.JobsProcessor.Tests\PamposTools.JobsProcessor.Tests.csproj", "{E342DB99-71C1-4E38-8C5D-2BB3AB6EF94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PamposTools.JobsProcessor.Tests", "PamposTools.JobsProcessor.Tests\PamposTools.JobsProcessor.Tests.csproj", "{E342DB99-71C1-4E38-8C5D-2BB3AB6EF94B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PamposTools.JobsProcessor.Console", "PamposTools.JobsProcessor.Console\PamposTools.JobsProcessor.Console.csproj", "{B885420D-C818-4292-B2B1-049B4FA76FC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E342DB99-71C1-4E38-8C5D-2BB3AB6EF94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E342DB99-71C1-4E38-8C5D-2BB3AB6EF94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E342DB99-71C1-4E38-8C5D-2BB3AB6EF94B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B885420D-C818-4292-B2B1-049B4FA76FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B885420D-C818-4292-B2B1-049B4FA76FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B885420D-C818-4292-B2B1-049B4FA76FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B885420D-C818-4292-B2B1-049B4FA76FC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿namespace PamposTools.JobsProcessor
 {
     /// <summary>
-    /// Abstraction on a job
+    /// Abstraction of a job
     /// </summary>
     public interface IJob
     {

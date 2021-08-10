@@ -8,7 +8,7 @@ using System.Threading;
 namespace PamposTools.JobsProcessor
 {
     /// <summary>
-    /// In-memory implementation of <see cref="IJobsProcessor{T}"/>. Uses a <see cref="BlockingCollection{T}"/> with a <see cref="ConcurrentQueue{T}"/> as the underlying collection to handle queueing/dequeing of jobs.
+    /// In-memory implementation of <see cref="IJobsProcessor{T}"/> which uses a <see cref="BlockingCollection{T}"/> with a <see cref="ConcurrentQueue{T}"/> as the underlying collection to handle queueing/dequeing of jobs.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class InMemoryJobsProcessor : IJobsProcessor
@@ -19,7 +19,7 @@ namespace PamposTools.JobsProcessor
         private readonly int _enqueueTimeoutMs = -1; //infinite
 
         /// <summary>
-        /// 
+        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process callback and has the specified max capacity
         /// </summary>
         /// <param name="processCallback">The action to be called when executing the job</param>
         /// <param name="maxCapacity">The max number of jobs that can be enqueued</param>
@@ -31,7 +31,7 @@ namespace PamposTools.JobsProcessor
         }
 
         /// <summary>
-        /// 
+        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process callback, max capacity and insertion timeout in miliseconds
         /// </summary>
         /// <param name="processCallback"></param>
         /// <param name="maxCapacity"></param>
