@@ -1,7 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0;netstandard2.1;netcoreapp3.1;net45;net47;net471;net472</TargetFrameworks>
+	<Authors>Charalambos Hadjiantoniou</Authors>
+    <Product>JobsProcessor</Product>
+    <Description>A lightweight thread-safe in-memory jobs processor</Description>
+    <Copyright>Charalambos Hadjiantoniou</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Vromeza/PamposTools.JobsProcessor</RepositoryUrl>
+    <PackageTags>Jobs, Processor, Thread-safe, ConcurrentQueue, queueing, abstractions</PackageTags>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PackageReleaseNotes>1.0.0: First release. Contains job processor abstractions and an in-memory implementation</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
