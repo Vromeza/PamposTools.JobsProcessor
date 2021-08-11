@@ -40,16 +40,27 @@ namespace PamposTools.JobsProcessor.Tests
         }
 
         [Fact]
-        public void JobProcess_Prevents_Processing_IfStopped()
+        public void JobProcessor_Throws_InvalidOperationException_IfStopped()
         {
             IJobsProcessor processor = new InMemoryJobsProcessor(DummyProcess, 10);
-            Job testJob = new Job("Test");
             processor.StartProcessing();
-            for (int i=0; i<=10; i++) {
-                if (i == 5)
-                    processor.StopProcessing();
-            }
-            processor.Insert(testJob);
+            Job testJob = new Job($"Test");
+            processor.StopProcessing();
+            Assert.Throws<InvalidOperationException>(() => processor.Insert(testJob));
+        }
+
+        [Fact] 
+        public void JobProcessor_Continues_Processing_Remaining_Jobs_AfterStopped()
+        {
+            IJobsProcessor processor = new InMemoryJobsProcessor(DummyProcess, 10);
+            Job testJob = new Job($"Test");
+            processor.StartProcessing();
+            for (int i = 0; i < 15; i++)
+                processor.Insert(testJob);
+            processor.StopProcessing();
+            Thread.Sleep(1000); //let processor do its work
+            int remainingJobs = processor.GetPendingJobs().Count();
+            Assert.Equal(0, remainingJobs);
         }
 
         private bool DummyProcess(IJob job)

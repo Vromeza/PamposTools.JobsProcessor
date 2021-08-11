@@ -1,11 +1,13 @@
-﻿namespace PamposTools.JobsProcessor
+﻿using System;
+
+namespace PamposTools.JobsProcessor
 {
     /// <summary>
     /// Abstraction of a job
     /// </summary>
     public interface IJob
     {
-        string Name { get; }
+        Guid Id { get; }
         JobPriority Priority { get; }
     }
 }

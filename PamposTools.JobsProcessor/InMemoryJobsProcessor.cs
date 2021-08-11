@@ -14,29 +14,38 @@ namespace PamposTools.JobsProcessor
     public class InMemoryJobsProcessor : IJobsProcessor
     {
         private readonly BlockingCollection<IJob> _jobs;
-        private readonly Func<IJob, bool> _onExecuteCallback;
+        private readonly Func<IJob, bool> _processDelegate;
         private readonly Thread _thread;
         private readonly int _enqueueTimeoutMs = -1; //infinite
 
         /// <summary>
-        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process callback and has the specified max capacity
+        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process delegate and has the specified max capacity
         /// </summary>
-        /// <param name="processCallback">The action to be called when executing the job</param>
-        /// <param name="maxCapacity">The max number of jobs that can be enqueued</param>
-        public InMemoryJobsProcessor(Func<IJob, bool> processCallback, int maxCapacity)
+        /// <param name="processDelegate">The action to be called when executing the job</param>
+        public InMemoryJobsProcessor(Func<IJob, bool> processDelegate)
         {
-            _onExecuteCallback = processCallback;
-            _jobs = _jobs ?? new BlockingCollection<IJob>(maxCapacity);
+            _processDelegate = processDelegate;
             _thread = new Thread(ProcessJobs) { IsBackground = true };
+            _jobs = _jobs ?? new BlockingCollection<IJob>();
         }
 
         /// <summary>
-        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process callback, max capacity and insertion timeout in miliseconds
+        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process delegate and has the specified max capacity
         /// </summary>
-        /// <param name="processCallback"></param>
+        /// <param name="processDelegate">The action to be called when executing the job</param>
+        /// <param name="maxCapacity">The bounded capacity for number of jobs that can be enqueued</param>
+        public InMemoryJobsProcessor(Func<IJob, bool> processDelegate, int maxCapacity) : this(processDelegate)
+        {
+            _jobs = new BlockingCollection<IJob>(maxCapacity);
+        }
+
+        /// <summary>
+        /// Initializes an instance of <see cref="InMemoryJobsProcessor"/> with the specified process delegate, max capacity and insertion timeout in miliseconds
+        /// </summary>
+        /// <param name="processDelegate"></param>
         /// <param name="maxCapacity"></param>
         /// <param name="insertTimeout">The insert timeout in ms. If the job cannot be inserted in the specified amount of time, it will be ignored</param>
-        public InMemoryJobsProcessor(Func<IJob, bool> processCallback, int maxCapacity, int insertTimeout) :this(processCallback, maxCapacity)
+        public InMemoryJobsProcessor(Func<IJob, bool> processDelegate, int maxCapacity, int insertTimeout):this(processDelegate, maxCapacity)
         {
             _enqueueTimeoutMs = insertTimeout;
         }
@@ -51,7 +60,7 @@ namespace PamposTools.JobsProcessor
         /// Calls the action to run the job
         /// </summary>
         /// <param name="job"></param>
-        public virtual bool Process(IJob job) => _onExecuteCallback(job);
+        public virtual bool Process(IJob job) => _processDelegate(job);
 
         /// <summary>
         /// Starts jobs processing

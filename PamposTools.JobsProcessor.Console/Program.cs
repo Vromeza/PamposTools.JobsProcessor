@@ -17,9 +17,9 @@ namespace PamposTools.JobsProcessor.Console
 
         private static bool DoSomeWork(IJob job)
         {
-            System.Console.Write($"Processing {job.Name} - ");
+            System.Console.Write($"Processing {job.Id} - ");
             Thread.Sleep(100);
-            System.Console.WriteLine($"Processed {job.Name}");
+            System.Console.WriteLine($"Processed {job.Id}");
             return true;
         }
     }
